@@ -1,4 +1,10 @@
 package com.example.laboratorio2.Repository;
 
-public interface JobsRepository {
+import com.example.laboratorio2.Entity.jobs;
+import org.springframework.data.jpa.repository.JpaRepository;
+import org.springframework.stereotype.Repository;
+
+@Repository
+public interface JobsRepository extends JpaRepository<jobs,String> {
+
 }
