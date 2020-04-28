@@ -1,10 +1,38 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Lista departments</title>
 </head>
 <body>
+<h2>Lista de departamentos</h2>
+<a class="btn btn-info" th:href="@{'/agregarD'}">Agregar Departamento</a>
+<h4>Ese soy Yo</h4>
+<div th:if="${mensaje != null}" th:text="${mensaje}" class="alert alert-success" role="alert"></div>
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Id</th>
+        <th scope="col">Name</th>
+        <th scope="col">Manger_Id</th>
+        <th scope="col">Location_Id</th>
+        <th scope="col">Short_Name</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="d,i:${listadep}">
+        <td th:text="${i.index+1}" scope="col"></td>
+        <td scope="col" th:text="${d.department_name}"></td>
+        <td scope="col"  th:text="${d.manager_id == !null?d.manager_id:'sin jefe'}"></td>
+        <td th:each="l:${listaloca}" th:if="d.location_id==l.location_id" th:text="${l.city}"></td>
+        <td><a class="btn btn-primary" th:href="@{'/editarD'+'?id='+${}}">Editar Departamento</a></td>
+        <td><a class="btn btn-danger" th:href="@{'/borrarD'+'?id='+${}}">Borrar Departamento</a></td>
 
+    </tr>
+    </tbody>
+</table>
 </body>
 </html>

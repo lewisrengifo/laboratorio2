@@ -1,0 +1,39 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>Crear nuevo departamento</title>
+</head>
+<body>
+<h1  class="p-3 mb-2 bg-info text-white" align="center">Crea un nuevo departamento</h1>
+<form   class="p-3 mb-2 bg-secondary text-white" method="post" th:action="@{'/guardarD'}" align="center">
+    <div class="form-group">
+        <b><label   for="department_name">Nombre del Departamento</label></b>
+        <input  name="department_name" type="text" class="form-control" id="department_name">
+    </div>
+    <div class="form-group">
+        <b><label   for="manager_id">Manager Id</label></b>
+        <input  name="manager_id" type="text" class="form-control" id="manager_id">
+    </div>
+    <div class="form-group">
+        <label for="location">Elije una ciudad:</label>
+
+        <select th:each="l:${listaloca}" id="location" name="location_id">
+            <option th:value="l.location_id" th:text="l.city">Volvo</option>
+
+        </select>
+    </div>
+
+    <div class="form-group">
+        <label for="location">Elije una ciudad:</label>
+
+        <select th:each="l:${listaloca}" id="location" name="location_id">
+            <option th:value="l.location_id" th:text="l.city">Volvo</option>
+
+        </select>
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Departamento</button>        <a th:href="@{'/lista'}" class="btn btn-danger">Cancelar</a>
+</form>
+
+</body>
+</html>
