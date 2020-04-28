@@ -15,6 +15,7 @@ import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.ArrayList;
 import java.util.List;
+import java.util.Optional;
 
 @Controller
 @RequestMapping("/jobs")
@@ -73,4 +74,16 @@ public class JobsController {
             return "jobs/agregar";
         }
     }
+
+
+    @GetMapping("/borrar")
+    public String borrar(@RequestParam("id") String id,RedirectAttributes redirectAttributes){
+        Optional<jobs> opt = jobsRepository.findById(id);
+        if(opt.isPresent()) {
+            jobsRepository.deleteById(id);
+            redirectAttributes.addFlashAttribute("mensaje2", "Eliminado Exitosamente");
+        }
+        return "redirect:/lista";
+    }
+
 }
