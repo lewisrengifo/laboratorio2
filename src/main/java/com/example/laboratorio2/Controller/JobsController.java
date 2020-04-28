@@ -2,6 +2,7 @@ package com.example.laboratorio2.Controller;
 
 import com.example.laboratorio2.Entity.departments;
 import com.example.laboratorio2.Entity.jobs;
+import com.example.laboratorio2.Repository.DepartmentsRepository;
 import com.example.laboratorio2.Repository.JobsRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -57,7 +58,7 @@ public class JobsController {
     @PostMapping("/guardar")
     public String guardar(jobs j, @RequestParam("valor") String valor, @RequestParam("nom") String nom,RedirectAttributes redirectAttributes){
         List<jobs> listaJobs = jobsRepository.findAll();
-        departments d=departmentsRepository.findByDepartment_name(valor);
+        departments d =departmentsRepository.findByDepartment_name(valor);
         String id=d.getDepartment_short_name() "+" nom;
         int a=0;
         for(jobs j:listaJobs){

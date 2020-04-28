@@ -8,6 +8,7 @@
 <h2>Lista de departamentos</h2>
 <a class="btn btn-info" th:href="@{'/agregarD'}">Agregar Departamento</a>
 <h4>Ese soy Yo</h4>
+<div th:if="${mensaje2 != null}" th:text="${mensaje2}" class="alert alert-success" role="alert"></div>
 <div th:if="${mensaje != null}" th:text="${mensaje}" class="alert alert-success" role="alert"></div>
 <table class="table table-striped">
     <thead class="thead-dark">

@@ -10,9 +10,11 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.ui.Model;
 import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PostMapping;
+import org.springframework.web.bind.annotation.RequestParam;
 import org.springframework.web.servlet.mvc.support.RedirectAttributes;
 
 import java.util.List;
+import java.util.Optional;
 
 public class DepartmentController {
     @Autowired
@@ -51,5 +53,14 @@ public class DepartmentController {
         }
         deparepo.save(departments);
         return "redirect:/listadepa";
+    }
+    @GetMapping("/borrar")
+    public String borrar(@RequestParam("id") int id,RedirectAttributes redirectAttributes){
+        Optional<departments> opt = deparepo.findById(id);
+        if(opt.isPresent()) {
+            deparepo.deleteById(id);
+            redirectAttributes.addFlashAttribute("mensaje2", "Eliminado Exitosamente");
+        }
+        return "redirect:/listaDepa";
     }
 }
