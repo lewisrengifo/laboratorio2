@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Lista</title>
+    <title>Busqueda</title>
     <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css"/>
     <script src="https://code.jquery.com/jquery-3.4.1.slim.min.js"></script>
     <script src="https://cdn.jsdelivr.net/npm/popper.js@1.16.0/dist/umd/popper.min.js"></script>
@@ -10,11 +10,7 @@
 </head>
 <body class="container">
 <h2>Lista Jobs</h2>
-<a class="btn btn-info" th:href="@{'/jobs/agregarJobs'}" >Agregar Jobs</a>
-<h4>Buscar por Rango de Salary</h4>
-<form method="post" th:action="@{'/jobs/buscar'}">
-    <input name="salary" class="form-control mb-3" type="text" placeholder="Search" aria-label="Search">
-</form>
+
 <table class="table table-striped">
     <thead class="thead-dark">
     <tr>
@@ -30,9 +26,9 @@
         <th scope="col" th:text="${j.min_salary}+' a '+${j.max_salary}"></th>
         <th><a class="btn btn-primary" th:href="@{'/editarJobs'+'?id='+${c.job_id}}">Editar Jobs</a></th>
         <th><a class="btn btn-danger" th:href="@{'/borrarJobs'+'?id='+${c.job_id}}" >Borrar Jobs</a></th>
-
     </tr>
     </tbody>
 </table>
+<a class="btn btn-info" th:href="@{'/jobs/lista'}" >Regresar</a>
 </body>
 </html>
