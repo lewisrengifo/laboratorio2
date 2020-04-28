@@ -1,10 +1,57 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Empleados</title>
 </head>
+
 <body>
+
+<h2>Lista de empleados</h2>
+<a class="btn btn-info" th:href="@{'/agregarD'}">Agregar Departamento</a>
+<h4>Lista de Empleados</h4>
+<div th:if="${mensaje != null}" th:text="${mensaje}" class="alert alert-success" role="alert"></div>
+<form method="post" th:action="@{/listaemp/buscarnom}">
+
+<input name="searchField" class="form-control mb-3" type="text" placeholder="Buscarnombre" />
+</form>
+<table class="table table-striped">
+    <thead class="thead-dark">
+    <tr>
+        <th scope="col">#</th>
+        <th scope="col">Nombre</th>
+        <th scope="col">Email</th>
+        <th scope="col">Telefono</th>
+        <th scope="col">Trabajo</th>
+        <th scope="col">Salario</th>
+        <th scope="col">Jefe</th>
+        <th scope="col">Departamento</th>
+        <th></th>
+        <th></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr th:each="c,i:${listaEmpleados}">
+        <td th:text="${i.index+1}" scope="col"></td>
+        <td scope="col" th:text="${c.first_name + ' ' +  c.last_name}"> nombre apellido</td>
+        <td scope="col" th:text="${c.email}"> correo </td>
+        <td scope="col" th:text="${c.phone_number}"> numero </td>
+        <td th:each="xd:${listaTrabajos}" th:if=" c.job_id == xd.job_id  " th:text="xd.job_title"  > fail   </td>
+        <td scope="col" th:text="${c.salary}"> salario </td>
+        <td th:each="d:${listaEmpleados}" th:text="${d.manager_id == !null?d.manager_id:'sin jefe'}"> fail 2 jefe  </td>
+        <td th:each="xd2:${listaDepartamentos}" th:if="xd2.department_id == c.department_id" th:text="xd2.department_name"  > fail 2 depa  </td>
+        <td><a class="btn btn-primary" th:href="@{'/editarE'+'?id='+${c.employee_id}}">Editar Empleado</a></td>
+        <td><a class="btn btn-danger" th:href="@{'/borrarE'+'?id='+${c.employee_id}}">Borrar Empleado</a></td>
+
+    </tr>
+    </tbody>
+</table>
+
+
+
+
+
+
 
 </body>
 </html>
