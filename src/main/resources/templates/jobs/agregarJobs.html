@@ -1,0 +1,36 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.4.1/css/bootstrap.min.css" integrity="sha384-Vkoo8x4CGsO3+Hhxv8T/Q5PaXtkKtu6ug5TOeNV6gBiFeWPGFN9MuhOf23Q9Ifjh" crossorigin="anonymous">
+    <title>Agregar </title>
+</head>
+<body class="container" >
+<h1  class="p-3 mb-2 bg-info text-white" align="center">Completar Datos Requeridos</h1>
+<div th:if="${mensaje != null}" th:text="${mensaje}" class="alert alert-success" role="alert"></div>
+<form   class="p-3 mb-2 bg-secondary text-white" method="post" th:action="@{'/guardar'}" align="center">
+    <div class="form-group">
+        <b><label   for="job_title">Nombre </label></b>
+        <input  name="job_title" type="text" class="form-control" id="job_title">
+    </div>
+    <div class="form-group">
+        <b><label   for="min_salary">Salario Minimo</label></b>
+        <input  name="min_salary" type="text" class="form-control" id="min_salary">
+    </div>
+    <div class="form-group">
+        <b><label   for="max_salary">Salario Maximo</label></b>
+        <input  name="max_salary" type="text" class="form-control" id="max_salary">
+    </div>
+    <div class="form-group">
+        <select th:each="d,i:${lista}">
+            <option th:value="valor"  th:text="${d.department_name}"></option>
+        </select>
+    </div>
+    <div class="form-group">
+        <b><label   for="nom">Nombre Corto</label></b>
+        <input  name="nom" type="text" class="form-control" id="nom">
+    </div>
+    <button type="submit" class="btn btn-primary">Agregar Jobs</button>        <a th:href="@{'/jobs//lista'}" class="btn btn-danger">Cancelar</a>
+</form>
+</body>
+</html>
