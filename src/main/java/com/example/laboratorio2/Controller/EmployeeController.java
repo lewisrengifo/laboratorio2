@@ -55,7 +55,7 @@ public class EmployeeController {
         return"/employee/nuevoemp";
     }
     @GetMapping("/borrar")
-    public String borrar(@RequestParam("id") int id, RedirectAttributes redirectAttributes){
+    public String borrar(@RequestParam("id") String id, RedirectAttributes redirectAttributes){
         Optional<employee> opt = employeeRepository.findById(id);
         if(opt.isPresent()) {
             employeeRepository.deleteById(id);
